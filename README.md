@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  A Zsh plugin to fuzzy search your history and load the result into the prompt using `fzf`.
+  A Zsh plugin to search your history and load the result into the prompt using <code>fzf</code>.
 </p>
 
 ---
