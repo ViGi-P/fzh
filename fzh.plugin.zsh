@@ -17,15 +17,37 @@ fzh() {
     echo "╠╣ ╔═╝╠╣   ╠═╣ ║ ╚═╗ ║ ║ ║╠╦╝╚╦╝"
     echo "╚  ╚═╝╚    ╩ ╩ ╩ ╚═╝ ╩ ╚═╝╩╚═ ╩ "
     echo "--------------------------------"
-    echo "Zsh plugin to fuzzy search your history for [search_term] and load the result into the prompt."
+    echo ""
+    echo "Zsh plugin to search your history for [search_term] and load the result into the prompt."
+    echo "By default, fzh uses exact matching. You can enable fuzzy matching with --mode=fuzzy."
     echo ""
     echo "Usage:"
     echo "------"
-    echo "fzh [search_term]"
+    echo "fzh [search_term] [--mode=fuzzy]"
+    echo ""
+    echo "Example:"
+    echo "--------"
+    echo "fzh --mode=fuzzy git commit"
     return 0
   fi
-  # Pass all unique history entries to fzf and use command-line arguments as the initial query
-  local selected=$(history -n 1 | grep -v '^fzh' | awk '!x[$0]++' | fzf --query "$*" +s --tac --no-sort | sed 's/^[ ]*//')
+  local query=""
+  local fzf_flags="--exact"
+
+  # Parse arguments
+  for arg in "$@"; do
+    if [[ "$arg" == "--mode=fuzzy" ]]; then
+      fzf_flags=""
+    else
+      if [[ -z "$query" ]]; then
+        query="$arg"
+      else
+        query="$query $arg"
+      fi
+    fi
+  done
+
+  # Pass all unique history entries to fzf and use the constructed query
+  local selected=$(history -n 1 | grep -v '^fzh' | awk '!x[$0]++' | fzf ${=fzf_flags} --query "$query" +s --tac --no-sort | sed 's/^[ ]*//')
 
   # Only print to the buffer if a selection was made
   if [ -n "$selected" ]; then

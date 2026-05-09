@@ -2,22 +2,25 @@
   <img src="./fzh.png" height="64" alt="fzh logo">
 </p>
 
-&nbsp;
+<p align="center">
+  A Zsh plugin to fuzzy search your history and load the result into the prompt using `fzf`.
+</p>
 
-A Zsh plugin to fuzzy search your history and load the result into the prompt using `fzf`.
+---
 
 ## Prerequisites
 
-- [fzf](https://github.com/junegunn/fzf) must be installed.
+- **[fzf](https://github.com/junegunn/fzf)** must be installed.
+- **Windows users**: If you use **WSL**, you are 100% safe. Other Windows Zsh users must have the standard Unix utilities (`awk`, `grep`, `sed`) installed along with `fzf`.
 
 ## Usage
 
 ```bash
-fzh --help 
-fzh [search_term]
+fzh --help # Display help
+fzh [search_term] [--mode=fuzzy]
 ```
 
-Example:
+### Example:
 ```bash
 fzh git commit
 ```
