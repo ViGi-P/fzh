@@ -24,8 +24,8 @@ fzh() {
     echo "fzh [search_term]"
     return 0
   fi
-  # Filter history with grep first to ensure strict matching & pass those matches to fzf for interactive selection
-  local selected=$(history -n 1 | grep -v '^fzh' | grep -i "$*" | awk '!x[$0]++' | fzf +s --tac --no-sort | sed 's/^[ ]*//')
+  # Pass all unique history entries to fzf and use command-line arguments as the initial query
+  local selected=$(history -n 1 | grep -v '^fzh' | awk '!x[$0]++' | fzf --query "$*" +s --tac --no-sort | sed 's/^[ ]*//')
 
   # Only print to the buffer if a selection was made
   if [ -n "$selected" ]; then

@@ -1,8 +1,8 @@
-```text
-╔═╗╔═╗╔═╗  ╦ ╦ ╦ ╔═╗╔╦╗╔═╗╦═╗╦ ╦
-╠╣ ╔═╝╠╣   ╠═╣ ║ ╚═╗ ║ ║ ║╠╦╝╚╦╝
-╚  ╚═╝╚    ╩ ╩ ╩ ╚═╝ ╩ ╚═╝╩╚═ ╩ 
-```
+<p align="center">
+  <img src="./fzh.png" height="64" alt="fzh logo">
+</p>
+
+&nbsp;
 
 A Zsh plugin to fuzzy search your history and load the result into the prompt using `fzf`.
 
@@ -13,7 +13,7 @@ A Zsh plugin to fuzzy search your history and load the result into the prompt us
 ## Usage
 
 ```bash
-fzh --help #Display help message
+fzh --help 
 fzh [search_term]
 ```
 
@@ -49,4 +49,3 @@ fzh git commit
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
